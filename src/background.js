@@ -69,30 +69,7 @@ app.on('ready', async () => {
   /**
    * Testing sqlite-cipher
    */
-  var db = new sqlite3.Database('test.db')
-
-  db.serialize(function() {
-    // This is the default, but it is good to specify explicitly:
-    db.run('PRAGMA cipher_compatibility = 4')
-
-    // To open a database created with SQLCipher 3.x, use this:
-    // db.run("PRAGMA cipher_compatibility = 3");
-
-    db.run("PRAGMA key = 'mysecret'")
-    db.run('CREATE TABLE lorem (info TEXT)')
-
-    var stmt = db.prepare('INSERT INTO lorem VALUES (?)')
-    for (var i = 0; i < 10; i++) {
-      stmt.run('Ipsum ' + i)
-    }
-    stmt.finalize()
-
-    db.each('SELECT rowid AS id, info FROM lorem', function(err, row) {
-      console.log(row.id + ': ' + row.info)
-    })
-  })
-
-  db.close()
+  createDatabase()
 })
 
 // Exit cleanly on request from parent process in development mode.
@@ -108,4 +85,40 @@ if (isDevelopment) {
       app.quit()
     })
   }
+}
+
+const createDatabase = () => {
+  console.log('Database created')
+  var db = new sqlite3.Database('test.db')
+
+  console.log('Starting use database ...')
+  db.serialize(function() {
+    // This is the default, but it is good to specify explicitly:
+    db.run('PRAGMA cipher_compatibility = 4')
+    console.log('Pragma cipher compatibility defined')
+
+    // To open a database created with SQLCipher 3.x, use this:
+    // db.run("PRAGMA cipher_compatibility = 3");
+
+    db.run("PRAGMA key = 'mysecret'")
+    console.log('Pragma cipher secret defined')
+    db.run('CREATE TABLE lorem (info TEXT)')
+    console.log('Table created')
+
+    var stmt = db.prepare('INSERT INTO lorem VALUES (?)')
+    for (var i = 0; i < 10; i++) {
+      stmt.run('Ipsum ' + i)
+    }
+    stmt.finalize()
+    console.log('Data inserted')
+
+    db.each('SELECT rowid AS id, info FROM lorem', function(err, row) {
+      if (err) console.log(err)
+      console.log(row.id + ': ' + row.info)
+    })
+    console.log('Read and log data')
+  })
+
+  db.close()
+  console.log('Database closed')
 }
