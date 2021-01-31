@@ -35,6 +35,7 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
   }
+  // createDatabase()
 }
 
 // Quit when all windows are closed.
@@ -64,12 +65,12 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
+  createDatabase()
   createWindow()
 
   /**
    * Testing sqlite-cipher
    */
-  createDatabase()
 })
 
 // Exit cleanly on request from parent process in development mode.
@@ -87,6 +88,19 @@ if (isDevelopment) {
   }
 }
 
+process.on('uncaughtException', err => {
+  const messageBoxOptions = {
+    type: 'error',
+    title: 'Error in Main process',
+    message: 'Something failed',
+  }
+  console.log(messageBoxOptions)
+  throw err
+})
+
+app.on('before-quit', event => {
+  console.log(event)
+})
 const createDatabase = () => {
   console.log('Database created')
   var db = new sqlite3.Database('test.db')
@@ -100,7 +114,9 @@ const createDatabase = () => {
     // To open a database created with SQLCipher 3.x, use this:
     // db.run("PRAGMA cipher_compatibility = 3");
 
-    db.run("PRAGMA key = 'mysecret'")
+    db.run("PRAGMA key = 'mysecret'", params => {
+      console.log('**** PRAGMA ****', params)
+    })
     console.log('Pragma cipher secret defined')
     db.run('CREATE TABLE lorem (info TEXT)')
     console.log('Table created')
