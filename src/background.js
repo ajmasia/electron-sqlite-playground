@@ -114,9 +114,9 @@ const createDatabase = () => {
     // To open a database created with SQLCipher 3.x, use this:
     // db.run("PRAGMA cipher_compatibility = 3");
 
-    // db.run("PRAGMA key = 'mysecret'", params => {
-    //   console.log('**** PRAGMA ****', params)
-    // })
+    db.run("PRAGMA key = 'mysecret'", params => {
+      console.log('**** PRAGMA ****', params)
+    })
     console.log('Pragma cipher secret defined')
     db.run('CREATE TABLE lorem (info TEXT)')
     console.log('Table created')
