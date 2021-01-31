@@ -26,4 +26,4 @@ pnpm-debug.log*
 /dist_electron
 
 # Database
-*.db
+test.db
