@@ -1073,7 +1073,7 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@journeyapps/sqlcipher@^5.0.0":
+"@journeyapps/sqlcipher@5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@journeyapps/sqlcipher/-/sqlcipher-5.0.0.tgz#30d8c901803c201c816b943307d8e8197a4c9676"
   integrity sha512-addNQxuJjvHtELKE1gHO1AARZt58P161rgwGhf4KP2XGn3hMfuHgoBPCcxmq6JZEiDgg4jObvZIsyFfio3kbgA==
@@ -4444,10 +4444,10 @@ electron-to-chromium@^1.3.634:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.647.tgz#8f1750ab7a5137f1a9a27f8f4ebdf550e08ae10b"
   integrity sha512-Or2Nu8TjkmSywY9hk85K/Y6il28hchlonITz30fkC87qvSNupQl29O12BzDDDTnUFlo6kEIFL2QGSpkZDMxH8g==
 
-electron@9.4.1:
-  version "9.4.1"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-9.4.1.tgz#62a2aae4cd93f1b56d794a47541505a71654177a"
-  integrity sha512-r4CxoVG9Ja7tBtkilWMnBsBGup8G8Z+v7icZmwysHa8/OSr0OrLjrcOF/30BAP7yPE5fz/XTxygnltzW4OTZdw==
+electron@10.3.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-10.3.0.tgz#3031fb66eaf3942fd764c54e8acf0bfdd25be762"
+  integrity sha512-QsDdckvy6D0wqcIPaEIg9w/SHkhR8lsjDXw5cI2TZcd9wfxiw/4OhmcUqGsfKhfJ64mbuoRFW4IdRaEtyKf3VQ==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^12.0.12"

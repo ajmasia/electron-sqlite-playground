@@ -111,12 +111,17 @@
 </template>
 
 <script>
+import dbService from '../dbService'
+
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
-    msg: String
-  }
-};
+    msg: String,
+  },
+  mounted() {
+    dbService()
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
